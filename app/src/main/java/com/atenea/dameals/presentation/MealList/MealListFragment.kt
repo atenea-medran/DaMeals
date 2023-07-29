@@ -1,11 +1,10 @@
 package com.atenea.dameals.presentation.MealList
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.atenea.dameals.R
+import androidx.fragment.app.Fragment
 import com.atenea.dameals.databinding.FragmentMealListBinding
 import com.atenea.dameals.domain.model.MealModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
