@@ -32,6 +32,9 @@ android {
     kotlinOptions {
         jvmTarget = '17'
     }
+    viewBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -41,6 +44,10 @@ dependencies {
 
     def retrofitVersion = '2.9.0'
     def roomVersion = '2.5.1'
+
+    // Coil
+    implementation "io.coil-kt:coil:2.4.0"
+
 
     // Android Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
