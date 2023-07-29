@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import com.atenea.dameals.databinding.FragmentMealListBinding
 import com.atenea.dameals.domain.model.MealModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 class MealListFragment : Fragment() {
 
@@ -31,6 +33,8 @@ class MealListFragment : Fragment() {
     }
 
     private fun initList(data: List<MealModel>) = binding.rvMealList.run {
+        this.layoutManager = GridLayoutManager(context,2)
+
         adapter = MealListAdapter(data) { model ->
             // TODO
         }

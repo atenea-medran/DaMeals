@@ -2,10 +2,15 @@ package com.atenea.dameals
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.atenea.dameals.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        val binding = ActivityMainBinding.inflate(layoutInflater)
+        with(binding) {
+            setContentView(root)
+            setSupportActionBar(toolbar)
+        }
     }
 }
