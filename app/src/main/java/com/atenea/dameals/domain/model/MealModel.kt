@@ -2,7 +2,7 @@ package com.atenea.dameals.domain.model
 
 data class MealModel(
 
-    val idMeal: String?,
+    val idMeal: String,
     val strMeal: String?,
     val strDrinkAlternate: String?,
     val strCategory: String?,

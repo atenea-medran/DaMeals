@@ -9,4 +9,8 @@ class MealRepositoryImpl(
 ) : MealRepository {
     override suspend fun getMealList(): List<MealModel> =
         remoteDataSource.getMealList().map { it.toMealModel() }
+
+    override suspend fun getMealDetail(mealId: String): MealModel =
+        remoteDataSource.getMealDetail(mealId).toMealModel()
+
 }

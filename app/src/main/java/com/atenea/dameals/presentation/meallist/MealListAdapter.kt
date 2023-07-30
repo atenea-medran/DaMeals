@@ -1,4 +1,4 @@
-package com.atenea.dameals.presentation.MealList
+package com.atenea.dameals.presentation.meallist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

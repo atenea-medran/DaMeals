@@ -1,10 +1,11 @@
-package com.atenea.dameals.presentation.MealList
+package com.atenea.dameals.presentation.meallist
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.atenea.dameals.databinding.FragmentMealListBinding
 import com.atenea.dameals.domain.model.MealModel
@@ -36,7 +37,7 @@ class MealListFragment : Fragment() {
         this.layoutManager = GridLayoutManager(context,2)
 
         adapter = MealListAdapter(data) { model ->
-            // TODO
+            findNavController().navigate(MealListFragmentDirections.actionMealListFragmentToMealDetailFragment(model.idMeal))
         }
     }
 

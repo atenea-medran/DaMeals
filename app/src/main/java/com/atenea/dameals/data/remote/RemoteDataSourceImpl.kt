@@ -6,4 +6,5 @@ class RemoteDataSourceImpl(
     private val mealApi: MealApi
 ) : RemoteDataSource {
     override suspend fun getMealList(): List<MealDto> = mealApi.getMealList().meals
+    override suspend fun getMealDetail(mealId: String): MealDto = mealApi.getMealDetail(mealId).meals[0]
 }
