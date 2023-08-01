@@ -8,7 +8,8 @@ import com.atenea.dameals.domain.model.MealModel
 
 class MealListAdapter(
     private val list: List<MealModel>,
-    private val onClick: (MealModel) -> Unit
+    private val itemOnClick: (MealModel) -> Unit,
+    private val starOnClick: (MealModel) -> Unit
 ) : RecyclerView.Adapter<MealViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MealViewHolder =
@@ -17,5 +18,5 @@ class MealListAdapter(
     override fun getItemCount(): Int = list.size
 
     override fun onBindViewHolder(holder: MealViewHolder, position: Int) =
-        holder.bind(list[position], onClick)
+        holder.bind(list[position], itemOnClick, starOnClick)
 }

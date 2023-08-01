@@ -8,11 +8,21 @@ import com.atenea.dameals.domain.model.MealModel
 class MealViewHolder(
     private val binding: ItemMealBinding): RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(item: MealModel, onClick: (MealModel) -> Unit) {
-        binding.tvMealName.text = item.strMeal
-        binding.ivMealImage.load(item.strMealThumb)
-        binding.root.setOnClickListener {
-            onClick(item)
+    fun bind(
+        item: MealModel,
+        itemOnClick: (MealModel) -> Unit,
+        starOnClick: (MealModel) -> Unit
+    ) {
+        with(binding) {
+            tvMealName.text = item.strMeal
+            ivMealImage.load(item.strMealThumb)
+            root.setOnClickListener {
+                itemOnClick(item)
+            }
+            ivStar.setOnClickListener {
+                starOnClick(item)
+            }
         }
+
     }
 }

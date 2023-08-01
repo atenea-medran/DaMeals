@@ -45,9 +45,13 @@ class MealListFragment : Fragment() {
     private fun initList(data: List<MealModel>) = binding.rvMealList.run {
         this.layoutManager = GridLayoutManager(context,2)
 
-        adapter = MealListAdapter(data) { model ->
-            findNavController().navigate(MealListFragmentDirections.actionMealListFragmentToMealDetailFragment(model.idMeal))
-        }
+        adapter = MealListAdapter(
+            data,
+            { model ->
+                findNavController().navigate(MealListFragmentDirections.actionMealListFragmentToMealDetailFragment(model.idMeal))
+            },
+            { model -> mealListViewModel.makeMealFavorite(model) }
+        )
     }
 
 

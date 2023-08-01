@@ -8,13 +8,17 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.atenea.dameals.domain.model.MealModel
 import com.atenea.dameals.domain.usecase.GetMealListUseCase
+import com.atenea.dameals.domain.usecase.MakeMealFavoriteUseCase
+import com.atenea.dameals.domain.usecase.RemoveMealFromFavoriteUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class MealListViewModel(
     private val context: Context,
-    private val getMealListUseCase: GetMealListUseCase
+    private val getMealListUseCase: GetMealListUseCase,
+    private val makeMealFavoriteUseCase: MakeMealFavoriteUseCase,
+    private val removeMealFromFavoriteUseCase: RemoveMealFromFavoriteUseCase
 ) : ViewModel() {
 
     private val _mealList = MutableLiveData<List<MealModel>>()
@@ -31,6 +35,15 @@ class MealListViewModel(
                 Log.d("Error", "Error en getData()")
             }
         }
+    }
+
+    fun makeMealFavorite(meal: MealModel) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                makeMealFavoriteUseCase.invoke(meal)
+            }
+        }
+
     }
 
 }

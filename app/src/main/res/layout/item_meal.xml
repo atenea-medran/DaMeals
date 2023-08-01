@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="220dp"
+    android:layout_height="240dp"
     android:layout_margin="5dp"
     app:cardCornerRadius="10dp"
     app:cardElevation="20dp">
@@ -27,14 +27,24 @@
 
         <TextView
             android:id="@+id/tv_meal_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
             android:gravity="center"
             android:padding="5dp"
             android:text="@string/meal_name"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/iv_star" />
+
+        <ImageView
+            android:id="@+id/iv_star"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/star"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/iv_meal_image"
+            android:clickable="true"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

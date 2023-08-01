@@ -1,7 +1,13 @@
 package com.atenea.dameals.di
 
+import android.content.Context
+import androidx.room.Room
 import com.atenea.dameals.data.MealRepository
 import com.atenea.dameals.data.MealRepositoryImpl
+import com.atenea.dameals.data.local.LocalDataSource
+import com.atenea.dameals.data.local.LocalDataSourceImpl
+import com.atenea.dameals.data.local.MealDao
+import com.atenea.dameals.data.local.MealDatabase
 import com.atenea.dameals.data.remote.MealApi
 import com.atenea.dameals.data.remote.RemoteDataSource
 import com.atenea.dameals.data.remote.RemoteDataSourceImpl
@@ -36,13 +42,32 @@ val dataModule = module {
             .build()
     }
 
-    single<MealRepository> { MealRepositoryImpl(get()) }
+    single<MealRepository> { MealRepositoryImpl(get(), get()) }
 
     single<RemoteDataSource> { RemoteDataSourceImpl(get()) }
+
+    single<LocalDataSource> { LocalDataSourceImpl(get()) }
 
     single<MealApi> {
         getMealApi(get())
     }
+
+    single {
+        getDatabase(get())
+    }
+
+    single {
+        providesMealDao(get())
+    }
 }
 
 private fun getMealApi(retrofit: Retrofit) = retrofit.create(MealApi::class.java)
+
+private fun getDatabase(context: Context) : MealDatabase =
+    Room.databaseBuilder(
+        context,
+        MealDatabase::class.java, "meal-db"
+    ).build()
+
+private fun providesMealDao(db: MealDatabase) : MealDao =
+    db.mealDao()
