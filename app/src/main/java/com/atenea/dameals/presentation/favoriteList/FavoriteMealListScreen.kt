@@ -28,6 +28,7 @@ class FavoriteMealListScreen() : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+                    FavoriteMealList()
                 }
             }
         }
@@ -38,7 +39,7 @@ class FavoriteMealListScreen() : ComponentActivity() {
 fun FavoriteMealList(
     favoriteMealListViewModel: FavoriteMealListScreenViewModel = koinViewModel()
 ) {
-    val mealstate = favoriteMealListViewModel.favoriteMealList.observeAsState()
+    val mealState = favoriteMealListViewModel.favoriteMealList.observeAsState()
 
     LazyColumn(
         modifier = Modifier.padding(
@@ -46,7 +47,7 @@ fun FavoriteMealList(
         ),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        val favoriteMealList = mealstate.value
+        val favoriteMealList = mealState.value
         items(favoriteMealList?.size ?: 0) { i ->
             val item = favoriteMealList?.get(i)
             item?.let { meal ->

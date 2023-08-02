@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.atenea.dameals.domain.model.MealModel
+import com.atenea.dameals.domain.usecase.GetFavoriteMealListUseCase
 import com.atenea.dameals.domain.usecase.GetMealListUseCase
 import com.atenea.dameals.domain.usecase.MakeMealFavoriteUseCase
 import com.atenea.dameals.domain.usecase.RemoveMealFromFavoriteUseCase
@@ -18,7 +19,8 @@ class MealListViewModel(
     private val context: Context,
     private val getMealListUseCase: GetMealListUseCase,
     private val makeMealFavoriteUseCase: MakeMealFavoriteUseCase,
-    private val removeMealFromFavoriteUseCase: RemoveMealFromFavoriteUseCase
+    private val removeMealFromFavoriteUseCase: RemoveMealFromFavoriteUseCase,
+    private val getFavoriteMealListUseCase: GetFavoriteMealListUseCase
 ) : ViewModel() {
 
     private val _mealList = MutableLiveData<List<MealModel>>()
@@ -38,8 +40,11 @@ class MealListViewModel(
     }
 
     fun makeMealFavorite(meal: MealModel) {
+        Log.d("Prueba Favorito", "Clica")
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
+                val favorites = getFavoriteMealListUseCase.invoke()
+                Log.d("Prueba favorito", favorites.size.toString())
                 makeMealFavoriteUseCase.invoke(meal)
             }
         }

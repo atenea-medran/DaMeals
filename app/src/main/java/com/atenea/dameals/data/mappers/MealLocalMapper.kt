@@ -57,7 +57,8 @@ fun MealLocal.toMealModel(): MealModel {
         strSource = strSource,
         strImageSource = strImageSource,
         strCreativeCommonsConfirmed = strCreativeCommonsConfirmed,
-        dateModified = dateModified
+        dateModified = dateModified,
+        favorite = favorite
     )
     
 }
