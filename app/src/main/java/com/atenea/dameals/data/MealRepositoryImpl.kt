@@ -6,6 +6,8 @@ import com.atenea.dameals.data.mappers.toMealLocal
 import com.atenea.dameals.data.mappers.toMealModel
 import com.atenea.dameals.data.remote.RemoteDataSource
 import com.atenea.dameals.domain.model.MealModel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 class MealRepositoryImpl(
     private val remoteDataSource: RemoteDataSource,
@@ -25,6 +27,10 @@ class MealRepositoryImpl(
         localDataSource.removeMealFromFavorites(meal)
     }
 
-    override suspend fun getFavoriteMealList(): List<MealModel> =
-        localDataSource.getFavoriteMealList().map { it.toMealModel() }
+    override suspend fun getFavoriteMealList(): Flow<List<MealModel>> {
+        return localDataSource.getFavoriteMealList().map { list ->
+            list.map { meal ->
+                meal.toMealModel() }
+        }
+    }
 }

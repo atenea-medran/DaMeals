@@ -40,11 +40,8 @@ class MealListViewModel(
     }
 
     fun makeMealFavorite(meal: MealModel) {
-        Log.d("Prueba Favorito", "Clica")
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                val favorites = getFavoriteMealListUseCase.invoke()
-                Log.d("Prueba favorito", favorites.size.toString())
                 makeMealFavoriteUseCase.invoke(meal)
             }
         }

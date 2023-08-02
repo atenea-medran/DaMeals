@@ -8,13 +8,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.atenea.dameals.presentation.favoriteList.ui.theme.DaMealsTheme
 import org.koin.androidx.compose.koinViewModel
 
@@ -37,25 +36,31 @@ class FavoriteMealListScreen() : ComponentActivity() {
 
 @Composable
 fun FavoriteMealList(
-    favoriteMealListViewModel: FavoriteMealListScreenViewModel = koinViewModel()
+    favoriteMealListViewModel: FavoriteMealListViewModel = koinViewModel()
 ) {
-    val mealState = favoriteMealListViewModel.favoriteMealList.observeAsState()
+    val mealState = favoriteMealListViewModel.favoriteMealListFlow.collectAsStateWithLifecycle()
 
-    LazyColumn(
-        modifier = Modifier.padding(
-            vertical = 20.dp
-        ),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        val favoriteMealList = mealState.value
-        items(favoriteMealList?.size ?: 0) { i ->
-            val item = favoriteMealList?.get(i)
-            item?.let { meal ->
-                ShowFavoriteMealList(meal)
-
+    when (mealState.value) {
+        is FavoriteMealListState.FavoriteMealList -> {
+            LazyColumn(
+                modifier = Modifier.padding(
+                    vertical = 20.dp
+                ),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                val favoriteMealList =
+                    (mealState.value as FavoriteMealListState.FavoriteMealList).favoriteMealList
+                items(favoriteMealList.size ?: 0) { i ->
+                    val item = favoriteMealList[i]
+                    ShowFavoriteMealList(item)
+                }
             }
         }
+
+        FavoriteMealListState.Idle -> {}
+        FavoriteMealListState.Loading -> {}
     }
+
 }
 
 

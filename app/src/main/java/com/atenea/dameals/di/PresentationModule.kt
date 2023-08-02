@@ -1,6 +1,6 @@
 package com.atenea.dameals.di
 
-import com.atenea.dameals.presentation.favoriteList.FavoriteMealListScreenViewModel
+import com.atenea.dameals.presentation.favoriteList.FavoriteMealListViewModel
 import com.atenea.dameals.presentation.mealdetail.MealDetailViewModel
 import com.atenea.dameals.presentation.meallist.MealListViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -14,6 +14,6 @@ val presentationModule = module {
     viewModel { MealDetailViewModel(get(),get()) }
     viewModelOf(::MealDetailViewModel)
 
-    viewModel { FavoriteMealListScreenViewModel(get()) }
+    viewModel { FavoriteMealListViewModel(get()) }
 
 }
