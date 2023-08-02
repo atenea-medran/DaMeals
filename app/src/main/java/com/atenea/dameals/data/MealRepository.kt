@@ -8,4 +8,5 @@ interface MealRepository {
     suspend fun getMealDetail(mealId: String): MealModel
     suspend fun makeMealFavorite(meal: MealModel)
     suspend fun removeMealFromFavorites(meal: MealLocal)
+    suspend fun getFavoriteMealList(): List<MealModel>
 }

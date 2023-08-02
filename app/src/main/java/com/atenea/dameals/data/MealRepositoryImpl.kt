@@ -25,4 +25,6 @@ class MealRepositoryImpl(
         localDataSource.removeMealFromFavorites(meal)
     }
 
+    override suspend fun getFavoriteMealList(): List<MealModel> =
+        localDataSource.getFavoriteMealList().map { it.toMealModel() }
 }

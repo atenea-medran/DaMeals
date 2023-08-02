@@ -5,9 +5,8 @@ import com.atenea.dameals.data.local.model.MealLocal
 class LocalDataSourceImpl(
     private val mealDao: MealDao
 ) : LocalDataSource {
-    override suspend fun getMealList(): List<MealLocal> =
+    override suspend fun getFavoriteMealList(): List<MealLocal> =
         mealDao.getAll()
-
 
     override suspend fun makeMealFavorite(meal: MealLocal) =
         mealDao.insertMeal(meal)

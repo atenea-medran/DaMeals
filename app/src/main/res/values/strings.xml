@@ -9,7 +9,7 @@
     </string>
     <string name="measure">%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s
     </string>
-    <string name="title_activity_favorite_list_screen">favoriteListScreen</string>
+    <string name="title_activity_favorite_list_screen">FavoriteMealListScreen</string>
     <string name="home">Home</string>
     <string name="favorites">Favorites</string>
 </resources>

@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import com.atenea.dameals.databinding.ActivityMainBinding
-import com.atenea.dameals.presentation.favoriteList.favoriteListScreen
+import com.atenea.dameals.presentation.favoriteList.FavoriteMealListScreen
 
 
 class MainActivity : AppCompatActivity() {
@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
                         return@setOnItemSelectedListener true
                     }
                     R.id.favorites -> {
-                        val intent = Intent(this@MainActivity, favoriteListScreen::class.java)
+                        val intent = Intent(this@MainActivity, FavoriteMealListScreen::class.java)
                         startActivity(intent)
                         return@setOnItemSelectedListener true
 
