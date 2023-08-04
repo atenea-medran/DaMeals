@@ -60,5 +60,4 @@ data class MealLocal(
     @ColumnInfo(name = "strCreativeCommonsConfirmed") val strCreativeCommonsConfirmed: String,
     @ColumnInfo(name = "dateModified") val dateModified: String,
     @ColumnInfo(name = "favorite") val favorite: Boolean
-
     )

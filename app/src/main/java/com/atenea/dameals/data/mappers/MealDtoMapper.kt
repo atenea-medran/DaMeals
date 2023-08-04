@@ -64,7 +64,7 @@ fun MealDto.toMealModel(): MealModel {
 
 fun MealModel.toMealLocal(): MealLocal {
     return MealLocal(
-        idMeal = idMeal ?: "",
+        idMeal = idMeal,
         strMeal = strMeal ?: "",
         strDrinkAlternate = strDrinkAlternate ?: "",
         strCategory = strCategory ?: "",
