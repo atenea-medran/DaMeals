@@ -11,7 +11,10 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 public interface MealDao {
 
-    @Query("SELECT * FROM FavoriteMealTable")
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAll(mealList: List<MealLocal>)
+
+    @Query("SELECT * FROM MealTable ORDER BY strMeal")
     suspend fun getAll(): List<MealLocal>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

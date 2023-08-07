@@ -42,6 +42,7 @@ class MealListViewModel(
     fun makeMealFavorite(meal: MealModel) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
+                meal.favorite = true
                 makeMealFavoriteUseCase.invoke(meal)
             }
         }

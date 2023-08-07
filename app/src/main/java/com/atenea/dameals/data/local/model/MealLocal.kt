@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "FavoriteMealTable")
+@Entity(tableName = "MealTable")
 data class MealLocal(
     @PrimaryKey @ColumnInfo(name = "idMeal") val idMeal: String,
     @ColumnInfo(name = "strMeal") val strMeal: String,

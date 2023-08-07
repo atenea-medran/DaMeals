@@ -8,13 +8,28 @@ import com.atenea.dameals.data.remote.RemoteDataSource
 import com.atenea.dameals.domain.model.MealModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.toList
 
 class MealRepositoryImpl(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource
 ) : MealRepository {
-    override suspend fun getMealList(): List<MealModel> =
-        remoteDataSource.getMealList().map { it.toMealModel() }
+    override suspend fun getMealList(): List<MealModel> {
+        val localData = localDataSource.getFavoriteMealList().toList()[0]
+        return if (localData.isNotEmpty()) {
+            localData.map { meal ->
+                meal.toMealModel()
+            }
+        } else {
+            val remoteData = remoteDataSource.getMealList()
+            localDataSource.insertMealList(remoteData.map { it.toMealLocal() })
+
+            remoteData.map {
+                it.toMealModel()
+            }
+
+        }
+    }
 
     override suspend fun getMealDetail(mealId: String): MealModel =
         remoteDataSource.getMealDetail(mealId).toMealModel()
@@ -31,6 +46,9 @@ class MealRepositoryImpl(
         return localDataSource.getFavoriteMealList().map { list ->
             list.map { meal ->
                 meal.toMealModel() }
+                .filter { meal ->
+                    meal.favorite
+                }
         }
     }
 }

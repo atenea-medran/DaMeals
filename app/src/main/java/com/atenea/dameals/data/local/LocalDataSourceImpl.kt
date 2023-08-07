@@ -7,6 +7,9 @@ import kotlinx.coroutines.flow.flow
 class LocalDataSourceImpl(
     private val mealDao: MealDao
 ) : LocalDataSource {
+    override suspend fun insertMealList(mealList: List<MealLocal>) =
+        mealDao.insertAll(mealList)
+
     override suspend fun getFavoriteMealList(): Flow<List<MealLocal>> =
         flow { emit(mealDao.getAll()) }
 

@@ -55,6 +55,6 @@ data class MealModel(
     val strImageSource: String?,
     val strCreativeCommonsConfirmed: String?,
     val dateModified: String?,
-    val favorite: Boolean = false
+    var favorite: Boolean = false
 )
 
