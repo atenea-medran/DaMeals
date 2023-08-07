@@ -8,14 +8,13 @@ import com.atenea.dameals.data.remote.RemoteDataSource
 import com.atenea.dameals.domain.model.MealModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.toList
 
 class MealRepositoryImpl(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource
 ) : MealRepository {
     override suspend fun getMealList(): List<MealModel> {
-        val localData = localDataSource.getFavoriteMealList().toList()[0]
+        val localData = localDataSource.getMealList()
         return if (localData.isNotEmpty()) {
             localData.map { meal ->
                 meal.toMealModel()
