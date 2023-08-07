@@ -1,41 +1,27 @@
 package com.atenea.dameals
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
-import com.atenea.dameals.databinding.ActivityMainBinding
-import com.atenea.dameals.presentation.favoriteList.FavoriteMealListScreen
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityMainBinding.inflate(layoutInflater)
-        with(binding) {
-            setContentView(root)
-            setSupportActionBar(toolbar)
-            bottomNavigation.setOnItemSelectedListener {
-                when (it.itemId) {
-                    R.id.home -> {
-                        val intent = Intent(this@MainActivity, MainActivity::class.java)
-                        startActivity(intent)
-                        return@setOnItemSelectedListener true
-                    }
-                    R.id.favorites -> {
-                        val intent = Intent(this@MainActivity, FavoriteMealListScreen::class.java)
-                        startActivity(intent)
-                        return@setOnItemSelectedListener true
+        setContentView(R.layout.activity_main)
 
-                    }
-                }
-                false
-            }
-        }
+        val navController = this.findNavController(R.id.nav_host_fragment)
+        // Find reference to bottom navigation view
+        val navView: BottomNavigationView = findViewById(R.id.bottom_nav_view)
+        // Hook your navigation controller to bottom navigation view
+        navView.setupWithNavController(navController)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.main_menu, menu)
+        menuInflater.inflate(R.menu.top_bar_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
 }
