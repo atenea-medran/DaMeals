@@ -1,4 +1,4 @@
-package com.atenea.dameals.presentation.favoriteList
+package com.atenea.dameals.presentation.favoritemeallist
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.atenea.dameals.presentation.favoriteList.ui.theme.DaMealsTheme
+import com.atenea.dameals.presentation.favoritemeallist.ui.theme.DaMealsTheme
 import org.koin.androidx.compose.koinViewModel
 
 class FavoriteMealListScreen() : ComponentActivity() {
@@ -51,8 +51,11 @@ fun FavoriteMealList(
                 val favoriteMealList =
                     (mealState.value as FavoriteMealListState.FavoriteMealList).favoriteMealList
                 items(favoriteMealList.size ?: 0) { i ->
-                    val item = favoriteMealList[i]
-                    ShowFavoriteMealList(item)
+                    val meal = favoriteMealList[i]
+                    ShowFavoriteMealList(meal) {
+                        meal.favorite = false
+                        favoriteMealListViewModel.removeMealFromFavoriteList(meal)
+                    }
                 }
             }
         }

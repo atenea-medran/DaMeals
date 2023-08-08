@@ -12,7 +12,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class MealDetailViewModel(
-    private val context: Context,
     private val getMealDetailUseCase: GetMealDetailUseCase
 ) : ViewModel() {
 
@@ -23,7 +22,7 @@ class MealDetailViewModel(
         getMeal(mealId)
     }
 
-    private fun getMeal(mealId: String) =
+    fun getMeal(mealId: String) =
         viewModelScope.launch {
             val result = withContext(Dispatchers.IO) {
                 getMealDetailUseCase.invoke(mealId)

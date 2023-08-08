@@ -19,7 +19,9 @@ class LocalDataSourceImpl(
     override suspend fun makeMealFavorite(meal: MealLocal) =
         mealDao.insertMeal(meal)
 
-    override suspend fun removeMealFromFavorites(meal: MealLocal) =
-        mealDao.deleteMeal(meal)
+    override suspend fun removeMealFromFavorites(meal: MealLocal) {
+        meal.favorite = false
+        mealDao.insertMeal(meal)
+    }
 
 }

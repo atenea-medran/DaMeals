@@ -26,6 +26,6 @@
     </fragment>
     <activity
         android:id="@+id/favoriteMealListScreen"
-        android:name="com.atenea.dameals.presentation.favoriteList.FavoriteMealListScreen"
+        android:name="com.atenea.dameals.presentation.favoritemeallist.FavoriteMealListScreen"
         android:label="FavoriteMealListScreen" />
 </navigation>

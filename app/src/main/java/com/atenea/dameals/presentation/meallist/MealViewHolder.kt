@@ -19,17 +19,20 @@ class MealViewHolder(
         with(binding) {
             tvMealName.text = meal.strMeal
             ivMealImage.load(meal.strMealThumb)
-            if (meal.favorite) putFilledStar()
+            if (meal.favorite) binding.ivStar.setImageResource(R.drawable.filled_star)
             root.setOnClickListener {
                 itemOnClick(meal)
             }
             ivStar.setOnClickListener {
                 starOnClick(meal)
-                putFilledStar()
+                putStar(meal)
             }
         }
 
     }
 
-    fun putFilledStar() = binding.ivStar.setImageResource(R.drawable.filled_star)
+    private fun putStar(meal: MealModel) {
+        if (!meal.favorite) binding.ivStar.setImageResource(R.drawable.filled_star)
+        else binding.ivStar.setImageResource(R.drawable.empty_star)
+    }
 }

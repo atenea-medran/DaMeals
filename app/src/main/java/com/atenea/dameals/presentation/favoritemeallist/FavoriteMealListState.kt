@@ -1,4 +1,4 @@
-package com.atenea.dameals.presentation.favoriteList
+package com.atenea.dameals.presentation.favoritemeallist
 
 import com.atenea.dameals.domain.model.MealModel
 

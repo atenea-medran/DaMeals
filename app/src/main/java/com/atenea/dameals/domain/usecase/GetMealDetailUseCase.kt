@@ -6,5 +6,5 @@ import com.atenea.dameals.domain.model.MealModel
 class GetMealDetailUseCase(
     private val mealRepository: MealRepository
 ) {
-    suspend fun invoke(mealId: String): MealModel = mealRepository.getMealDetail(mealId)
+    suspend fun invoke(mealId: String): MealModel? = mealRepository.getMealDetail(mealId)
 }

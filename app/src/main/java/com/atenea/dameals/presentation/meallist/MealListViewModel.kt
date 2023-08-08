@@ -16,11 +16,9 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class MealListViewModel(
-    private val context: Context,
     private val getMealListUseCase: GetMealListUseCase,
     private val makeMealFavoriteUseCase: MakeMealFavoriteUseCase,
     private val removeMealFromFavoriteUseCase: RemoveMealFromFavoriteUseCase,
-    private val getFavoriteMealListUseCase: GetFavoriteMealListUseCase
 ) : ViewModel() {
 
     private val _mealList = MutableLiveData<List<MealModel>>()
@@ -47,6 +45,15 @@ class MealListViewModel(
             }
         }
 
+    }
+
+    fun removeMealFromFavoriteList(meal: MealModel) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                meal.favorite = false
+                removeMealFromFavoriteUseCase.invoke(meal)
+            }
+        }
     }
 
 }

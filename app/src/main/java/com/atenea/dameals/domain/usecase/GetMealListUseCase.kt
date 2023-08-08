@@ -6,5 +6,5 @@ import com.atenea.dameals.domain.model.MealModel
 class GetMealListUseCase(
     private val mealRepository: MealRepository
 ) {
-    suspend fun invoke(): List<MealModel> = mealRepository.getMealList()
+    suspend fun invoke(): List<MealModel>? = mealRepository.getMealList()
 }

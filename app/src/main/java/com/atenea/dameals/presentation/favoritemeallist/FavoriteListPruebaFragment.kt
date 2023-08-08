@@ -1,4 +1,4 @@
-package com.atenea.dameals.presentation.favoriteList
+package com.atenea.dameals.presentation.favoritemeallist
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

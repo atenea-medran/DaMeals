@@ -1,4 +1,4 @@
-package com.atenea.dameals.presentation.favoriteList.ui.theme
+package com.atenea.dameals.presentation.favoritemeallist.ui.theme
 
 import androidx.compose.ui.unit.dp
 

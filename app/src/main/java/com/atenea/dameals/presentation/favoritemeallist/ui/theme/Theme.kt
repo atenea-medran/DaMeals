@@ -1,4 +1,4 @@
-package com.atenea.dameals.presentation.favoriteList.ui.theme
+package com.atenea.dameals.presentation.favoritemeallist.ui.theme
 
 import android.app.Activity
 import android.os.Build
@@ -53,6 +53,8 @@ fun DaMealsTheme(
         darkTheme -> DarkColorScheme
         else -> LightColorScheme
     }
+//    val window = (view.context as Activity).window
+//    window.statusBarColor = statusBarColor
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {

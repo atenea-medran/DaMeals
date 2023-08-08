@@ -12,4 +12,5 @@
     <string name="title_activity_favorite_list_screen">FavoriteMealListScreen</string>
     <string name="home">Home</string>
     <string name="favorites">Favorites</string>
+    <string name="checkbox">Done Checkbox</string>
 </resources>

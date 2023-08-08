@@ -1,4 +1,4 @@
-package com.atenea.dameals.presentation.favoriteList
+package com.atenea.dameals.presentation.favoritemeallist
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

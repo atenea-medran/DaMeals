@@ -40,21 +40,21 @@ class MealApiTest {
     fun `WHEN request meal list EXPECT meal list`() = runTest {
         val result = api.getMealList()
 
-        assertThat(result.meals.isNotEmpty(), `is`(true))
+        assertThat(result.meals?.isNotEmpty(), `is`(true))
     }
 
     @Test
     fun `WHEN request correct idMeal EXPECT meal`() = runTest {
         val result = api.getMealDetail("52772")
 
-        assertThat(result.meals[0].strMeal, `is`("Teriyaki Chicken Casserole"))
+        assertThat(result?.meals?.get(0)?.strMeal, `is`("Teriyaki Chicken Casserole"))
     }
 
-    @Test(expected = HttpException::class)
-    fun `WWHEN request with wrong idMeal EXPECT throws exception`() = runTest {
-        api.getMealDetail("Wrong idmeal")
+    @Test
+    fun `WWHEN request with wrong idMeal EXPECT null value`() = runTest {
+        val result = api.getMealDetail("Wrong idmeal")
 
-        assert(false)
+        assertThat(result?.meals, `is`(nullValue()))
     }
 
 

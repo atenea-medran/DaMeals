@@ -47,10 +47,13 @@ class MealListFragment : Fragment() {
 
         adapter = MealListAdapter(
             data,
-            { model ->
-                findNavController().navigate(MealListFragmentDirections.actionMealListFragmentToMealDetailFragment(model.idMeal))
+            { meal ->
+                findNavController().navigate(MealListFragmentDirections.actionMealListFragmentToMealDetailFragment(meal.idMeal))
             },
-            { model -> mealListViewModel.makeMealFavorite(model) }
+            { meal ->
+                if (!meal.favorite) mealListViewModel.makeMealFavorite(meal)
+                else mealListViewModel.removeMealFromFavoriteList(meal)
+            }
         )
     }
 

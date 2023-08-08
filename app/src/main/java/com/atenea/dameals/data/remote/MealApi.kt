@@ -11,6 +11,6 @@ interface MealApi {
     suspend fun getMealList(): MealsDto
 
     @GET("api/json/v1/1/lookup.php?")
-    suspend fun getMealDetail(@Query("i") mealId: String): MealsDto
+    suspend fun getMealDetail(@Query("i") mealId: String): MealsDto?
 
 }

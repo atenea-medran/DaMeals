@@ -13,7 +13,7 @@ class MealRepositoryImpl(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource
 ) : MealRepository {
-    override suspend fun getMealList(): List<MealModel> {
+    override suspend fun getMealList(): List<MealModel>? {
         val localData = localDataSource.getMealList()
         return if (localData.isNotEmpty()) {
             localData.map { meal ->
@@ -21,24 +21,24 @@ class MealRepositoryImpl(
             }
         } else {
             val remoteData = remoteDataSource.getMealList()
-            localDataSource.insertMealList(remoteData.map { it.toMealLocal() })
+            remoteData?.map { it.toMealLocal() }?.let { localDataSource.insertMealList(it) }
 
-            remoteData.map {
+            remoteData?.map {
                 it.toMealModel()
             }
 
         }
     }
 
-    override suspend fun getMealDetail(mealId: String): MealModel =
-        remoteDataSource.getMealDetail(mealId).toMealModel()
+    override suspend fun getMealDetail(mealId: String): MealModel? =
+        remoteDataSource.getMealDetail(mealId)?.toMealModel()
 
     override suspend fun makeMealFavorite(meal: MealModel) {
         localDataSource.makeMealFavorite(meal.toMealLocal())
     }
 
-    override suspend fun removeMealFromFavorites(meal: MealLocal) {
-        localDataSource.removeMealFromFavorites(meal)
+    override suspend fun removeMealFromFavorites(meal: MealModel) {
+        localDataSource.removeMealFromFavorites(meal.toMealLocal())
     }
 
     override suspend fun getFavoriteMealList(): Flow<List<MealModel>> {

@@ -59,5 +59,5 @@ data class MealLocal(
     @ColumnInfo(name = "strImageSource") val strImageSource: String,
     @ColumnInfo(name = "strCreativeCommonsConfirmed") val strCreativeCommonsConfirmed: String,
     @ColumnInfo(name = "dateModified") val dateModified: String,
-    @ColumnInfo(name = "favorite") val favorite: Boolean
+    @ColumnInfo(name = "favorite") var favorite: Boolean
     )
