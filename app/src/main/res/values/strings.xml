@@ -13,4 +13,6 @@
     <string name="home">Home</string>
     <string name="favorites">Favorites</string>
     <string name="checkbox">Done Checkbox</string>
+    <string name="meal_image">Meal image</string>
+    <string name="boton_de_favorito">Botón de favorito</string>
 </resources>

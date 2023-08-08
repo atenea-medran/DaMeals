@@ -1,5 +1,6 @@
 package com.atenea.dameals.presentation.favoritemeallist
 
+import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -46,8 +47,16 @@ fun ShowFavoriteMealCard(
         mutableStateOf(false)
     }
 
+    val context = LocalContext.current
+
     Card(
-        modifier = Modifier.padding(globalPadding),
+        modifier = Modifier
+            .padding(globalPadding)
+            .clickable {
+                Toast
+                    .makeText(context, "Toast!!", Toast.LENGTH_SHORT)
+                    .show()
+            },
         elevation = globalElevation,
         shape = RoundedCornerShape(globalRoundedCornerShape)
     ) {
