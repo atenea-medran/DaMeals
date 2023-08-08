@@ -1,6 +1,5 @@
 package com.atenea.dameals.data
 
-import com.atenea.dameals.data.local.model.MealLocal
 import com.atenea.dameals.domain.model.MealModel
 import kotlinx.coroutines.flow.Flow
 

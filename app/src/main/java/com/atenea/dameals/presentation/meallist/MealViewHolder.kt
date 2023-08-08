@@ -1,7 +1,5 @@
 package com.atenea.dameals.presentation.meallist
 
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Star
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.atenea.dameals.R

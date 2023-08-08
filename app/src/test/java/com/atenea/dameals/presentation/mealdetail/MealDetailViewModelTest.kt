@@ -1,7 +1,7 @@
 package com.atenea.dameals.presentation.mealdetail
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.atenea.dameals.MealModelDataBuilder
+import com.atenea.dameals.mealModelDataBuilder
 import com.atenea.dameals.domain.usecase.GetMealDetailUseCase
 import com.atenea.dameals.testutil.DefaultDispatcherRule
 import com.atenea.dameals.testutil.getOrAwaitValue
@@ -35,7 +35,7 @@ class MealDetailViewModelTest {
     @Test
     fun `WHEN detail viewModel getData EXPECT returns data`() = runTest {
         coEvery { getMealDetailUseCase.invoke("52772") } returns
-                MealModelDataBuilder()
+                mealModelDataBuilder()
 
         val viewModel = MealDetailViewModel(getMealDetailUseCase)
 
@@ -49,7 +49,7 @@ class MealDetailViewModelTest {
     @Test
     fun `WHEN detail viewModel getData with wrong id EXPECT returns data`() = runTest {
         coEvery { getMealDetailUseCase.invoke("5277221312") } returns
-                MealModelDataBuilder()
+                mealModelDataBuilder()
 
         val viewModel = MealDetailViewModel(getMealDetailUseCase)
 

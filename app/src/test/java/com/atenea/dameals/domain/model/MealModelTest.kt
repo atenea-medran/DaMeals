@@ -1,13 +1,13 @@
 package com.atenea.dameals.domain.model
 
-import com.atenea.dameals.MealModelDataBuilder
+import com.atenea.dameals.mealModelDataBuilder
 import org.hamcrest.CoreMatchers
 import org.hamcrest.MatcherAssert
 import org.junit.Assert.*
 import org.junit.Test
 
 class MealModelTest {
-    private val mealModel = MealModelDataBuilder()
+    private val mealModel = mealModelDataBuilder()
 
 
     @Test

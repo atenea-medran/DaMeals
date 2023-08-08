@@ -5,11 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebChromeClient
-import android.webkit.WebSettings.PluginState
-import android.widget.TextView
 import androidx.annotation.RequiresApi
-import androidx.core.view.MenuHost
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import coil.load
@@ -38,57 +34,57 @@ class MealDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         mealDetailViewModel.meal.observe(viewLifecycleOwner) { meal ->
             with(binding) {
-                tvMealName.text = meal.strMeal
-                ivMealImage.load(meal.strMealThumb)
+                tvMealName.text = meal?.strMeal
+                ivMealImage.load(meal?.strMealThumb)
                 with(meal) {
                     tvIngredients.text = getString(
                         R.string.ingredients,
-                        strIngredient1?.replaceFirstChar { it.uppercase() },
-                        strIngredient2?.replaceFirstChar { it.uppercase() },
-                        strIngredient3?.replaceFirstChar { it.uppercase() },
-                        strIngredient4?.replaceFirstChar { it.uppercase() },
-                        strIngredient5?.replaceFirstChar { it.uppercase() },
-                        strIngredient6?.replaceFirstChar { it.uppercase() },
-                        strIngredient7?.replaceFirstChar { it.uppercase() },
-                        strIngredient8?.replaceFirstChar { it.uppercase() },
-                        strIngredient9?.replaceFirstChar { it.uppercase() },
-                        strIngredient10?.replaceFirstChar { it.uppercase() },
-                        strIngredient11?.replaceFirstChar { it.uppercase() },
-                        strIngredient12?.replaceFirstChar { it.uppercase() },
-                        strIngredient13?.replaceFirstChar { it.uppercase() },
-                        strIngredient14?.replaceFirstChar { it.uppercase() },
-                        strIngredient15?.replaceFirstChar { it.uppercase() },
-                        strIngredient16?.replaceFirstChar { it.uppercase() },
-                        strIngredient17?.replaceFirstChar { it.uppercase() },
-                        strIngredient18?.replaceFirstChar { it.uppercase() },
-                        strIngredient19?.replaceFirstChar { it.uppercase() },
-                        strIngredient20?.replaceFirstChar { it.uppercase() },
+                        this?.strIngredient1?.replaceFirstChar { it.uppercase() },
+                        this?.strIngredient2?.replaceFirstChar { it.uppercase() },
+                        this?.strIngredient3?.replaceFirstChar { it.uppercase() },
+                        this?.strIngredient4?.replaceFirstChar { it.uppercase() },
+                        this?.strIngredient5?.replaceFirstChar { it.uppercase() },
+                        this?.strIngredient6?.replaceFirstChar { it.uppercase() },
+                        this?.strIngredient7?.replaceFirstChar { it.uppercase() },
+                        this?.strIngredient8?.replaceFirstChar { it.uppercase() },
+                        this?.strIngredient9?.replaceFirstChar { it.uppercase() },
+                        this?.strIngredient10?.replaceFirstChar { it.uppercase() },
+                        this?.strIngredient11?.replaceFirstChar { it.uppercase() },
+                        this?.strIngredient12?.replaceFirstChar { it.uppercase() },
+                        this?.strIngredient13?.replaceFirstChar { it.uppercase() },
+                        this?.strIngredient14?.replaceFirstChar { it.uppercase() },
+                        this?.strIngredient15?.replaceFirstChar { it.uppercase() },
+                        this?.strIngredient16?.replaceFirstChar { it.uppercase() },
+                        this?.strIngredient17?.replaceFirstChar { it.uppercase() },
+                        this?.strIngredient18?.replaceFirstChar { it.uppercase() },
+                        this?.strIngredient19?.replaceFirstChar { it.uppercase() },
+                        this?.strIngredient20?.replaceFirstChar { it.uppercase() },
                     ).trim()
 
                     tvQuantity.text = getString(
                         R.string.measure,
-                        strMeasure1,
-                        strMeasure2,
-                        strMeasure3,
-                        strMeasure4,
-                        strMeasure5,
-                        strMeasure6,
-                        strMeasure7,
-                        strMeasure8,
-                        strMeasure9,
-                        strMeasure10,
-                        strMeasure11,
-                        strMeasure12,
-                        strMeasure13,
-                        strMeasure14,
-                        strMeasure15,
-                        strMeasure16,
-                        strMeasure17,
-                        strMeasure18,
-                        strMeasure19,
-                        strMeasure20
+                        this?.strMeasure1 ?: "",
+                        this?.strMeasure2 ?: "",
+                        this?.strMeasure3 ?: "",
+                        this?.strMeasure4 ?: "",
+                        this?.strMeasure5 ?: "",
+                        this?.strMeasure6 ?: "",
+                        this?.strMeasure7 ?: "",
+                        this?.strMeasure8 ?: "",
+                        this?.strMeasure9 ?: "",
+                        this?.strMeasure10 ?: "",
+                        this?.strMeasure11 ?: "",
+                        this?.strMeasure12 ?: "",
+                        this?.strMeasure13 ?: "",
+                        this?.strMeasure14 ?: "",
+                        this?.strMeasure15 ?: "",
+                        this?.strMeasure16 ?: "",
+                        this?.strMeasure17 ?: "",
+                        this?.strMeasure18 ?: "",
+                        this?.strMeasure19 ?: "",
+                        this?.strMeasure20 ?: ""
                     ).trim()
-                    tvInstructions.text = meal.strInstructions
+                    tvInstructions.text = meal?.strInstructions
                 }
 
 //                wvYoutube.webChromeClient = WebChromeClient()

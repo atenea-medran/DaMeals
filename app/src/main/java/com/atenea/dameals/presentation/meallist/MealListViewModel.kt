@@ -1,13 +1,10 @@
 package com.atenea.dameals.presentation.meallist
 
-import android.content.Context
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.atenea.dameals.domain.model.MealModel
-import com.atenea.dameals.domain.usecase.GetFavoriteMealListUseCase
 import com.atenea.dameals.domain.usecase.GetMealListUseCase
 import com.atenea.dameals.domain.usecase.MakeMealFavoriteUseCase
 import com.atenea.dameals.domain.usecase.RemoveMealFromFavoriteUseCase

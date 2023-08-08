@@ -1,8 +1,8 @@
 package com.atenea.dameals.data
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.atenea.dameals.MealDtoDataBuilder
-import com.atenea.dameals.MealLocalDataBuilder
+import com.atenea.dameals.mealDtoDataBuilder
+import com.atenea.dameals.mealLocalDataBuilder
 import com.atenea.dameals.data.local.LocalDataSource
 import com.atenea.dameals.data.mappers.toMealModel
 import com.atenea.dameals.data.remote.RemoteDataSource
@@ -71,6 +71,6 @@ class MealRepositoryImplTest {
 
 }
 
-fun getListLocal() = listOf(MealLocalDataBuilder(), MealLocalDataBuilder())
+fun getListLocal() = listOf(mealLocalDataBuilder(), mealLocalDataBuilder())
 
-fun getListRemote() = listOf(MealDtoDataBuilder(), MealDtoDataBuilder(), MealDtoDataBuilder())
+fun getListRemote() = listOf(mealDtoDataBuilder(), mealDtoDataBuilder(), mealDtoDataBuilder())

@@ -1,7 +1,6 @@
 package com.atenea.dameals.data
 
 import com.atenea.dameals.data.local.LocalDataSource
-import com.atenea.dameals.data.local.model.MealLocal
 import com.atenea.dameals.data.mappers.toMealLocal
 import com.atenea.dameals.data.mappers.toMealModel
 import com.atenea.dameals.data.remote.RemoteDataSource

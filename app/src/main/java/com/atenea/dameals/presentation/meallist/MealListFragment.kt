@@ -1,7 +1,6 @@
 package com.atenea.dameals.presentation.meallist
 
 import android.os.Bundle
-import android.view.ContextMenu
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,14 +33,6 @@ class MealListFragment : Fragment() {
             }
         }
         mealListViewModel.getData()
-    }
-
-    override fun onCreateContextMenu(
-        menu: ContextMenu,
-        v: View,
-        menuInfo: ContextMenu.ContextMenuInfo?
-    ) {
-        super.onCreateContextMenu(menu, v, menuInfo)
     }
 
     private fun initList(data: List<MealModel>) = binding.rvMealList.run {

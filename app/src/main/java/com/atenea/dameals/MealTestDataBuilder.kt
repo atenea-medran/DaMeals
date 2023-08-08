@@ -4,7 +4,7 @@ import com.atenea.dameals.data.local.model.MealLocal
 import com.atenea.dameals.data.remote.dto.MealDto
 import com.atenea.dameals.domain.model.MealModel
 
-fun MealLocalDataBuilder() =
+fun mealLocalDataBuilder() =
     MealLocal(
         idMeal = "52772",
         strMeal = "Teriyaki Chicken Casserole",
@@ -62,7 +62,7 @@ fun MealLocalDataBuilder() =
         favorite = false
     )
 
-fun MealDtoDataBuilder() =
+fun mealDtoDataBuilder() =
     MealDto(
         idMeal = "52772",
         strMeal = "Teriyaki Chicken Casserole",
@@ -119,7 +119,7 @@ fun MealDtoDataBuilder() =
         dateModified = ""
     )
 
-fun MealModelDataBuilder() =
+fun mealModelDataBuilder() =
     MealModel(
         idMeal = "52772",
         strMeal = "Teriyaki Chicken Casserole",
@@ -181,7 +181,7 @@ fun buildMealList(numElements: Int): List<MealModel> {
 
     for (i in 0 until numElements ) {
         list.add(
-            MealModelDataBuilder()
+            mealModelDataBuilder()
         )
     }
     list[0].favorite = true
