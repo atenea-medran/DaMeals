@@ -38,7 +38,7 @@ import com.atenea.dameals.presentation.favoritemeallist.ui.theme.globalPadding
 import com.atenea.dameals.presentation.favoritemeallist.ui.theme.globalRoundedCornerShape
 
 @Composable
-fun ShowFavoriteMealList(
+fun ShowFavoriteMealCard(
     meal: MealModel,
     onClickDelete: () -> Unit
 ) {

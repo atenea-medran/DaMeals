@@ -45,4 +45,18 @@ class MealDetailViewModelTest {
 
         MatcherAssert.assertThat(result.idMeal, `is`("52772"))
     }
+
+    @Test
+    fun `WHEN detail viewModel getData with wrong id EXPECT returns data`() = runTest {
+        coEvery { getMealDetailUseCase.invoke("5277221312") } returns
+                MealModelDataBuilder()
+
+        val viewModel = MealDetailViewModel(getMealDetailUseCase)
+
+        viewModel.getMeal("52772")
+
+        val result = viewModel.meal.getOrAwaitValue()
+
+        MatcherAssert.assertThat(result.idMeal, `is`(""))
+    }
 }

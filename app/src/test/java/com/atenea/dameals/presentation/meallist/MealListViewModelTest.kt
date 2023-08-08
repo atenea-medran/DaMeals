@@ -27,11 +27,6 @@ class MealListViewModelTest {
     @get:Rule
     val defaultDispatcherRule: DefaultDispatcherRule = DefaultDispatcherRule()
 
-//    @MockK(relaxed = true)
-//    private lateinit var getMealListUseCase: GetMealListUseCase
-//    private lateinit var makeMealFavoriteUseCase: MakeMealFavoriteUseCase
-//    private lateinit var removeMealFromFavoriteUseCase: RemoveMealFromFavoriteUseCase
-
     @MockK(relaxed = true)
     private lateinit var getMealListUseCase: GetMealListUseCase
     @MockK(relaxed = true)
