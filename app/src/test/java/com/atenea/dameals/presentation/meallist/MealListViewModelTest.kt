@@ -1,7 +1,6 @@
 package com.atenea.dameals.presentation.meallist
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.atenea.dameals.MealModelDataBuilder
 import com.atenea.dameals.buildMealList
 import com.atenea.dameals.domain.usecase.GetMealListUseCase
 import com.atenea.dameals.domain.usecase.MakeMealFavoriteUseCase
@@ -15,7 +14,6 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.hamcrest.CoreMatchers
 import org.hamcrest.MatcherAssert
-import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -58,9 +56,9 @@ class MealListViewModelTest {
 
         viewModel.getData()
 
-        val res = viewModel.mealList.getOrAwaitValue()
+        val result = viewModel.mealList.getOrAwaitValue()
 
-        MatcherAssert.assertThat(res.size, CoreMatchers.`is`(12))
+        MatcherAssert.assertThat(result?.size , CoreMatchers.`is`(12))
 
     }
 }

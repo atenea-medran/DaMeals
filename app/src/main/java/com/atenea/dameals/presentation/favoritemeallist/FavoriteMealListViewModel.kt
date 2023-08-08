@@ -21,9 +21,9 @@ class FavoriteMealListViewModel(
         MutableStateFlow<FavoriteMealListState>(FavoriteMealListState.Idle)
     val favoriteMealListFlow: StateFlow<FavoriteMealListState> = _favoriteMealListFlow
 
-    init {
-        getData()
-    }
+//    init {
+//        getData()
+//    }
 
     fun getData() {
         viewModelScope.launch {

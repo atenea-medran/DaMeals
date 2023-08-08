@@ -1,10 +1,8 @@
 package com.atenea.dameals.presentation.favoritemeallist
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.compose.runtime.collectAsState
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import app.cash.turbine.test
 import com.atenea.dameals.buildMealList
-import com.atenea.dameals.data.mappers.toMealLocal
 import com.atenea.dameals.domain.usecase.GetFavoriteMealListUseCase
 import com.atenea.dameals.domain.usecase.RemoveMealFromFavoriteUseCase
 import com.atenea.dameals.testutil.DefaultDispatcherRule
@@ -13,15 +11,14 @@ import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.runTest
-import org.hamcrest.CoreMatchers
+import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.nullValue
-import org.hamcrest.MatcherAssert
-import org.junit.Assert.*
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.junit.Assert.assertEquals
 
 class FavoriteMealListViewModelTest {
     @get:Rule
@@ -44,18 +41,23 @@ class FavoriteMealListViewModelTest {
 
     @Test
     fun `WHEN viewModel init EXPECT data at LiveData`() = runTest {
-        coEvery { getFavoriteMealListUseCase.invoke() } returns
-                flow { buildMealList(10) }
+        val list = buildMealList(10)
+        coEvery { getFavoriteMealListUseCase.invoke() } returns flow {
+            emit(list)
+        }
 
         val viewModel = FavoriteMealListViewModel(
             getFavoriteMealListUseCase,
             removeMealFromFavoriteUseCase
         )
 
-        viewModel.getData()
-        val result = viewModel.favoriteMealListFlow.value as? FavoriteMealListState.FavoriteMealList
+        viewModel.favoriteMealListFlow.test {
+            viewModel.getData()
+            assertEquals(FavoriteMealListState.Idle, awaitItem())
+            assertEquals(FavoriteMealListState.FavoriteMealList(list), awaitItem())
+        }
 
-        MatcherAssert.assertThat(result, CoreMatchers.`is`(nullValue()))
+        assertThat(FavoriteMealListState.FavoriteMealList(list).favoriteMealList.size, `is`(10))
 
     }
 

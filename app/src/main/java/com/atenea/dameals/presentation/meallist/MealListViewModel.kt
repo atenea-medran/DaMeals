@@ -21,8 +21,8 @@ class MealListViewModel(
     private val removeMealFromFavoriteUseCase: RemoveMealFromFavoriteUseCase,
 ) : ViewModel() {
 
-    private val _mealList = MutableLiveData<List<MealModel>>()
-    val mealList: LiveData<List<MealModel>> get() = _mealList
+    private val _mealList = MutableLiveData<List<MealModel>?>()
+    val mealList: MutableLiveData<List<MealModel>?> get() = _mealList
 
     fun getData() {
         viewModelScope.launch {

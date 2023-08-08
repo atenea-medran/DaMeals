@@ -29,7 +29,9 @@ class MealListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mealListViewModel.mealList.observe(viewLifecycleOwner) { mealList ->
-            initList(mealList)
+            if (mealList != null) {
+                initList(mealList)
+            }
         }
         mealListViewModel.getData()
     }

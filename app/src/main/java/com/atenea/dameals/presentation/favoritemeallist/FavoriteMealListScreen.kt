@@ -40,6 +40,7 @@ fun FavoriteMealList(
 ) {
     val mealState = favoriteMealListViewModel.favoriteMealListFlow.collectAsStateWithLifecycle()
 
+    favoriteMealListViewModel.getData()
     when (mealState.value) {
         is FavoriteMealListState.FavoriteMealList -> {
             LazyColumn(
@@ -50,7 +51,7 @@ fun FavoriteMealList(
             ) {
                 val favoriteMealList =
                     (mealState.value as FavoriteMealListState.FavoriteMealList).favoriteMealList
-                items(favoriteMealList.size ?: 0) { i ->
+                items(favoriteMealList.size) { i ->
                     val meal = favoriteMealList[i]
                     ShowFavoriteMealList(meal) {
                         meal.favorite = false
