@@ -29,7 +29,7 @@ fun FavoriteMealList(
                     (mealState.value as FavoriteMealListState.FavoriteMealList).favoriteMealList
                 items(favoriteMealList.size) { i ->
                     val meal = favoriteMealList[i]
-                    ShowFavoriteMealCard(meal, onCardClik = {
+                    ShowFavoriteMealCard(meal, onCardClick = {
                         onCardClick(meal.idMeal)
 
                     },

@@ -1,9 +1,12 @@
 package com.atenea.dameals.presentation.meallist
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.compose.ui.graphics.Color
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -27,21 +30,54 @@ class MealListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.btReload.setOnClickListener {
+            mealListViewModel.getData()
+            hideErrorMessageAndReloadButton()
+        }
+
         mealListViewModel.mealList.observe(viewLifecycleOwner) { mealList ->
+            Log.d("meallist", mealList.toString())
             if (mealList != null) {
+                Log.d("meallistobserve", "observe")
                 initList(mealList)
+            }
+        }
+
+        mealListViewModel.errorMessage.observe(viewLifecycleOwner) { message ->
+            message?.let {
+                showErrorMessageAndReloadButton(it)
+//                binding.rvMealList.visibility = View.GONE
+            } ?: run {
+                hideErrorMessageAndReloadButton()
             }
         }
         mealListViewModel.getData()
     }
 
+    private fun showErrorMessageAndReloadButton(message: String) {
+        binding.tvErrorText.apply {
+            visibility = View.VISIBLE
+            text = message
+        }
+        binding.btReload.visibility = View.VISIBLE
+    }
+
+    private fun hideErrorMessageAndReloadButton() {
+        binding.tvErrorText.visibility = View.GONE
+        binding.btReload.visibility = View.GONE
+    }
+
     private fun initList(data: List<MealModel>) = binding.rvMealList.run {
-        this.layoutManager = GridLayoutManager(context,2)
+        this.layoutManager = GridLayoutManager(context, 2)
 
         adapter = MealListAdapter(
             data,
             { meal ->
-                findNavController().navigate(MealListFragmentDirections.actionMealListFragmentToMealDetailFragment(meal.idMeal))
+                findNavController().navigate(
+                    MealListFragmentDirections.actionMealListFragmentToMealDetailFragment(
+                        meal.idMeal
+                    )
+                )
             },
             { meal ->
                 if (!meal.favorite) mealListViewModel.makeMealFavorite(meal)

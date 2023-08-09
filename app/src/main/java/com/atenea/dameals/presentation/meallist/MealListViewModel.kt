@@ -1,6 +1,7 @@
 package com.atenea.dameals.presentation.meallist
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -21,6 +22,9 @@ class MealListViewModel(
     private val _mealList = MutableLiveData<List<MealModel>?>()
     val mealList: MutableLiveData<List<MealModel>?> get() = _mealList
 
+    private val _errorMessage = MutableLiveData<String?>()
+    val errorMessage: LiveData<String?> get() = _errorMessage
+
     fun getData() {
         viewModelScope.launch {
             try {
@@ -28,8 +32,10 @@ class MealListViewModel(
                     getMealListUseCase.invoke()
                 }
                 _mealList.value = result
+                _errorMessage.value = null
             } catch (t: Throwable) {
-                Log.d("Error", "Error en getData()")
+                Log.d("Error", "Error en getData() ${t.message}")
+                _errorMessage.value = "Error de internet"
             }
         }
     }

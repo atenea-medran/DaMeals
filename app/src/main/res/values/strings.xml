@@ -15,4 +15,6 @@
     <string name="checkbox">Done Checkbox</string>
     <string name="meal_image">Meal image</string>
     <string name="boton_de_favorito">Botón de favorito</string>
+    <string name="error">Error</string>
+    <string name="recargar">Recargar</string>
 </resources>

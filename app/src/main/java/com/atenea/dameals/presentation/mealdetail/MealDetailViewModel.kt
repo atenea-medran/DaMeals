@@ -1,5 +1,6 @@
 package com.atenea.dameals.presentation.mealdetail
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -20,11 +21,17 @@ class MealDetailViewModel(
         getMeal(mealId)
     }
 
-    fun getMeal(mealId: String) =
-        viewModelScope.launch {
-            val result = withContext(Dispatchers.IO) {
-                getMealDetailUseCase.invoke(mealId)
+    fun getMeal(mealId: String) {
+        try {
+            viewModelScope.launch {
+                val result = withContext(Dispatchers.IO) {
+                    getMealDetailUseCase.invoke(mealId)
+                }
+                _meal.value = result
             }
-            _meal.value = result
+        } catch (t: Throwable) {
+            Log.d("ERROR", t.toString())
         }
+    }
+
 }

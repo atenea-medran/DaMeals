@@ -1,8 +1,9 @@
 package com.atenea.dameals.presentation.favoritemeallist
 
-import android.widget.Toast
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.focusable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -17,6 +18,7 @@ import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -28,6 +30,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
@@ -47,94 +50,106 @@ import com.atenea.dameals.presentation.favoritemeallist.ui.theme.globalRoundedCo
 @Composable
 fun ShowFavoriteMealCard(
     meal: MealModel,
-    onCardClik: () -> Unit,
+    onCardClick: () -> Unit,
     onClickDelete: () -> Unit
 ) {
     var done by remember {
         mutableStateOf(false)
     }
 
-    val context = LocalContext.current
+    var composeChecked by remember {
+        mutableStateOf(false)
+    }
 
     val requester = FocusRequester()
 
-    Card(
-        modifier = Modifier
-            .padding(globalPadding)
-            .clickable {
-                onCardClik()
-            },
-        elevation = globalElevation,
-        shape = RoundedCornerShape(globalRoundedCornerShape)
-    ) {
-        Row(
+    Box{
+        Card(
             modifier = Modifier
                 .padding(globalPadding)
-                .fillMaxWidth(),
+                .clickable {
+                    onCardClick()
+                }
+                .background(Color.Gray),
+            elevation = globalElevation,
+            shape = RoundedCornerShape(globalRoundedCornerShape),
+
+        ) {}
+    }
+
+    Row(
+        modifier = Modifier
+            .padding(globalPadding)
+            .fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        AsyncImage(
+            modifier = Modifier
+                .size(100.dp)
+                .clip(CircleShape)
+                .focusRequester(focusRequester = requester)
+                .focusable(),
+            model = ImageRequest.Builder(LocalContext.current)
+                .data(meal.strMealThumb)
+                .build(),
+            contentDescription = "Meal ${meal.strMeal} Image"
+        )
+        Row(
+            modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            AsyncImage(
-                modifier = Modifier
-                    .size(100.dp)
-                    .clip(CircleShape)
-                    .focusRequester(focusRequester = requester)
-                    .focusable(),
-                model = ImageRequest.Builder(LocalContext.current)
-                    .data(meal.strMealThumb)
-                    .build(),
-                contentDescription = "Meal ${meal.strMeal} Image"
-            )
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically
+            Column(
+                modifier = Modifier.weight(1f),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Column(
-                    modifier = Modifier.weight(1f),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Text(
-                        modifier = Modifier.width(200.dp),
-                        text = meal.strMeal ?: "",
-                        maxLines = 2,
-                        overflow = TextOverflow.Ellipsis,
-                        textAlign = TextAlign.Center
-                    )
-                }
-                Column {
-                    AndroidView(
-                        modifier = Modifier
-                            .focusable()
-                            .clickable {
-                                val newState = !done
-                                done = newState
-                            }
-                            .clearAndSetSemantics {
-                                contentDescription = "Mark ${meal.strMeal} as done"
-                                stateDescription = if (done) {
-                                    "${meal.strMeal} marked as done"
-                                } else {
-                                    "${meal.strMeal} marked as not done"
-                                }
-                            }
-                        ,
-                        factory = { context ->
-                            CheckComponent(context).apply {
-                                this.checked = done
-                            }
-                        },
-                        update = {
-                            it.checked = done
-                        }
-                    )
-                    Spacer(modifier = Modifier.height(25.dp))
-                    Icon(
-                        imageVector = Icons.Default.Delete,
-                        contentDescription = "Delete icon",
-                        Modifier.clickable { onClickDelete.invoke() }
-                    )
-                }
-
+                Text(
+                    modifier = Modifier.width(200.dp),
+                    text = meal.strMeal ?: "",
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis,
+                    textAlign = TextAlign.Center
+                )
             }
+            Checkbox(
+                modifier = Modifier
+                    .clearAndSetSemantics {
+                        contentDescription = "Marcar ${meal.strMeal} como cocinado"
+                        stateDescription = if (composeChecked) {
+                            "${meal.strMeal} marcado como cocinado"
+                        } else {
+                            "${meal.strMeal} desmarcado como cocinado"
+                        }
+                    }
+                    .padding(end = 10.dp)
+                    .focusable(),
+                checked = composeChecked,
+                onCheckedChange = { composeChecked = it }
+            )
+            Column {
+                AndroidView(
+                    modifier = Modifier
+                        .clickable {
+                            val newState = !done
+                            done = newState
+                        },
+                    factory = { context ->
+                        CheckComponent(context).apply {
+                            this.checked = done
+                        }
+                    },
+                    update = {
+                        it.checked = done
+                    }
+                )
+                Spacer(modifier = Modifier.height(25.dp))
+                Icon(
+                    imageVector = Icons.Default.Delete,
+                    contentDescription = "Delete icon",
+                    Modifier.clickable { onClickDelete.invoke() }
+                )
+            }
+
         }
     }
 }
+
