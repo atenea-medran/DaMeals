@@ -20,7 +20,6 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:src="@drawable/fastfood"
-            android:contentDescription="@string/meal_image"
             app:layout_constraintBottom_toTopOf="@+id/tv_meal_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

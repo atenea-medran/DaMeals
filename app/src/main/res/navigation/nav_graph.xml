@@ -24,13 +24,12 @@
             app:argType="string"
             app:nullable="false"/>
     </fragment>
-    <activity
-        android:id="@+id/favoriteMealListScreen"
-        android:name="com.atenea.dameals.presentation.favoritemeallist.FavoriteMealListScreen"
-        android:label="FavoriteMealListScreen" />
     <fragment
-        android:id="@+id/favoriteListFragment"
+        android:id="@+id/favoriteMealListFragment"
         android:name="com.atenea.dameals.presentation.favoritemeallist.FavoriteMealListFragment"
-        android:label="fragment_favorite_list"
-        tools:layout="@layout/fragment_favorite_meal_list" />
+        android:label="fragment_favorite_meal_list"
+        tools:layout="@layout/fragment_favorite_meal_list">
+        <action android:id="@+id/action_FavoriteMealListFragment_to_MealDetailFragment"
+            app:destination="@id/mealDetailFragment"/>
+    </fragment>
 </navigation>

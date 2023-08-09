@@ -2,6 +2,7 @@ package com.atenea.dameals.presentation.favoritemeallist
 
 import android.widget.Toast
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -25,14 +26,19 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.atenea.dameals.components.StarComponent
+import com.atenea.dameals.components.CheckComponent
 import com.atenea.dameals.domain.model.MealModel
 import com.atenea.dameals.presentation.favoritemeallist.ui.theme.globalElevation
 import com.atenea.dameals.presentation.favoritemeallist.ui.theme.globalPadding
@@ -41,6 +47,7 @@ import com.atenea.dameals.presentation.favoritemeallist.ui.theme.globalRoundedCo
 @Composable
 fun ShowFavoriteMealCard(
     meal: MealModel,
+    onCardClik: () -> Unit,
     onClickDelete: () -> Unit
 ) {
     var done by remember {
@@ -49,13 +56,13 @@ fun ShowFavoriteMealCard(
 
     val context = LocalContext.current
 
+    val requester = FocusRequester()
+
     Card(
         modifier = Modifier
             .padding(globalPadding)
             .clickable {
-                Toast
-                    .makeText(context, "Toast!!", Toast.LENGTH_SHORT)
-                    .show()
+                onCardClik()
             },
         elevation = globalElevation,
         shape = RoundedCornerShape(globalRoundedCornerShape)
@@ -69,11 +76,13 @@ fun ShowFavoriteMealCard(
             AsyncImage(
                 modifier = Modifier
                     .size(100.dp)
-                    .clip(CircleShape),
+                    .clip(CircleShape)
+                    .focusRequester(focusRequester = requester)
+                    .focusable(),
                 model = ImageRequest.Builder(LocalContext.current)
                     .data(meal.strMealThumb)
                     .build(),
-                contentDescription = ""
+                contentDescription = "Meal ${meal.strMeal} Image"
             )
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -93,12 +102,23 @@ fun ShowFavoriteMealCard(
                 }
                 Column {
                     AndroidView(
-                        modifier = Modifier.clickable {
-                            val newState = !done
-                            done = newState
-                        },
+                        modifier = Modifier
+                            .focusable()
+                            .clickable {
+                                val newState = !done
+                                done = newState
+                            }
+                            .clearAndSetSemantics {
+                                contentDescription = "Mark ${meal.strMeal} as done"
+                                stateDescription = if (done) {
+                                    "${meal.strMeal} marked as done"
+                                } else {
+                                    "${meal.strMeal} marked as not done"
+                                }
+                            }
+                        ,
                         factory = { context ->
-                            StarComponent(context).apply {
+                            CheckComponent(context).apply {
                                 this.checked = done
                             }
                         },

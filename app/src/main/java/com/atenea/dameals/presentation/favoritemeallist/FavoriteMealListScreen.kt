@@ -11,7 +11,8 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun FavoriteMealList(
-    favoriteMealListViewModel: FavoriteMealListViewModel = koinViewModel()
+    favoriteMealListViewModel: FavoriteMealListViewModel = koinViewModel(),
+    onCardClick: (String) -> Unit
 ) {
     val mealState = favoriteMealListViewModel.favoriteMealListFlow.collectAsStateWithLifecycle()
 
@@ -28,10 +29,15 @@ fun FavoriteMealList(
                     (mealState.value as FavoriteMealListState.FavoriteMealList).favoriteMealList
                 items(favoriteMealList.size) { i ->
                     val meal = favoriteMealList[i]
-                    ShowFavoriteMealCard(meal) {
-                        meal.favorite = false
-                        favoriteMealListViewModel.removeMealFromFavoriteList(meal)
-                    }
+                    ShowFavoriteMealCard(meal, onCardClik = {
+                        onCardClick(meal.idMeal)
+
+                    },
+                        onClickDelete = {
+                            favoriteMealListViewModel.removeMealFromFavoriteList(meal)
+                            favoriteMealListViewModel.getData()
+                        }
+                    )
                 }
             }
         }

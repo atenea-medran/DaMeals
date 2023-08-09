@@ -6,7 +6,7 @@
         android:icon="@drawable/home"
         android:title="@string/home"/>
     <item
-        android:id="@+id/favoriteListFragment"
+        android:id="@+id/favoriteMealListFragment"
         android:enabled="true"
         android:icon="@drawable/filled_star"
         android:title="@string/favorites"/>
