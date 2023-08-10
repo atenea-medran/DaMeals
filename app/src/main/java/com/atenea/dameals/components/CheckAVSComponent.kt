@@ -26,9 +26,9 @@ class CheckAVSComponent @JvmOverloads constructor(
 
     private fun selectImage() = imageView.setImageResource(
         if (checked) {
-            R.drawable.done
+            R.drawable.checkbox_done
         } else {
-            R.drawable.empty_checkbox
+            R.drawable.checkbox_empty
         }
     )
 }

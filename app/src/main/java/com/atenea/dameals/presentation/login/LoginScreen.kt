@@ -2,13 +2,17 @@ package com.atenea.dameals.presentation.login
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
@@ -20,6 +24,7 @@ import androidx.compose.material.TextField
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.outlined.Lock
+import androidx.compose.material3.Checkbox
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -32,9 +37,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.viewinterop.AndroidView
 import com.atenea.dameals.R
+import com.atenea.dameals.components.CheckAVSComponent
 import com.atenea.dameals.presentation.favoritemeallist.ui.theme.Red
 
 const val LOGIN_TEXT_FIELD_USER = "LOGIN_TEXT_FIELD_USER"
@@ -45,6 +55,14 @@ fun LoginScreen(
     onLoginSuccess: () -> Unit,
     onLoginFail: () -> Unit
 ) {
+
+    var composeChecked by remember {
+        mutableStateOf(false)
+    }
+
+    var checked by remember {
+        mutableStateOf(false)
+    }
 
     var email by remember {
         mutableStateOf("atenea-medran")
@@ -69,7 +87,7 @@ fun LoginScreen(
         ) {
             Image(
                 modifier = Modifier.fillMaxSize(),
-                painter = painterResource(id = R.drawable.ic_launcher_foreground),
+                painter = painterResource(id = R.drawable._ic_launcher_foreground),
                 contentDescription = "DaMeals"
             )
         }
@@ -155,6 +173,45 @@ fun LoginScreen(
                 text = stringResource(R.string.login)
             )
         }
+        Spacer(
+            modifier = Modifier
+                .size(20.dp)
+        )
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Checkbox(
+                modifier = Modifier
+                    .clearAndSetSemantics {
+                        contentDescription = "Checkbox recordar"
+                        stateDescription = if (composeChecked) {
+                            "Estado recordar"
+                        } else {
+                            "Estado no recordar"
+                        }
+                    }
+                    .focusable(),
+                checked = composeChecked,
+                onCheckedChange = { composeChecked = it }
+            )
+            Text(text = "Recordar usuario")
+            AndroidView(
+                modifier = Modifier
+                    .clickable {
+                        val newState = !checked
+                        checked = newState
+                    }.padding(10.dp),
+                factory = { context ->
+                    CheckAVSComponent(context).apply {
+                        this.checked = checked
+                    }
+                },
+                update = {
+                    it.checked = checked
+                }
+            )
+        }
+
     }
 }
 

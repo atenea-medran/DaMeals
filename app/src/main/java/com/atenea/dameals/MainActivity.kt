@@ -2,6 +2,7 @@ package com.atenea.dameals
 
 import android.os.Bundle
 import android.view.Menu
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
@@ -17,7 +18,6 @@ class MainActivity : AppCompatActivity() {
             setContentView(root)
             setSupportActionBar(toolbar)
         }
-
 
         val navController = this.findNavController(R.id.nav_host_fragment)
         val navView: BottomNavigationView = findViewById(R.id.bottom_nav_view)

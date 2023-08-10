@@ -28,6 +28,7 @@ class MealListFragment : Fragment() {
         binding = this
     }.root
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.btReload.setOnClickListener {

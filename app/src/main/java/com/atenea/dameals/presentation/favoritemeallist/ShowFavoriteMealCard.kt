@@ -57,98 +57,62 @@ fun ShowFavoriteMealCard(
         mutableStateOf(false)
     }
 
-    var composeChecked by remember {
-        mutableStateOf(false)
-    }
-
     val requester = FocusRequester()
 
-    Box{
-        Card(
-            modifier = Modifier
-                .padding(globalPadding)
-                .clickable {
-                    onCardClick()
-                }
-                .background(Color.Gray),
-            elevation = globalElevation,
-            shape = RoundedCornerShape(globalRoundedCornerShape),
 
-        ) {}
-    }
-
-    Row(
+    Card(
         modifier = Modifier
             .padding(globalPadding)
-            .fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        AsyncImage(
-            modifier = Modifier
-                .size(100.dp)
-                .clip(CircleShape)
-                .focusRequester(focusRequester = requester)
-                .focusable(),
-            model = ImageRequest.Builder(LocalContext.current)
-                .data(meal.strMealThumb)
-                .build(),
-            contentDescription = "Meal ${meal.strMeal} Image"
-        )
+            .clickable {
+                onCardClick()
+            },
+        elevation = globalElevation,
+        shape = RoundedCornerShape(globalRoundedCornerShape),
+
+        ) {
+
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .padding(globalPadding)
+                .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Column(
-                modifier = Modifier.weight(1f),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Text(
-                    modifier = Modifier.width(200.dp),
-                    text = meal.strMeal ?: "",
-                    maxLines = 2,
-                    overflow = TextOverflow.Ellipsis,
-                    textAlign = TextAlign.Center
-                )
-            }
-            Checkbox(
+            AsyncImage(
                 modifier = Modifier
-                    .clearAndSetSemantics {
-                        contentDescription = "Marcar ${meal.strMeal} como cocinado"
-                        stateDescription = if (composeChecked) {
-                            "${meal.strMeal} marcado como cocinado"
-                        } else {
-                            "${meal.strMeal} desmarcado como cocinado"
-                        }
-                    }
-                    .padding(end = 10.dp)
+                    .size(100.dp)
+                    .clip(CircleShape)
+                    .focusRequester(focusRequester = requester)
                     .focusable(),
-                checked = composeChecked,
-                onCheckedChange = { composeChecked = it }
+                model = ImageRequest.Builder(LocalContext.current)
+                    .data(meal.strMealThumb)
+                    .build(),
+                contentDescription = "Meal ${meal.strMeal} Image"
             )
-            Column {
-                AndroidView(
-                    modifier = Modifier
-                        .clickable {
-                            val newState = !done
-                            done = newState
-                        },
-                    factory = { context ->
-                        CheckAVSComponent(context).apply {
-                            this.checked = done
-                        }
-                    },
-                    update = {
-                        it.checked = done
-                    }
-                )
-                Spacer(modifier = Modifier.height(25.dp))
-                Icon(
-                    imageVector = Icons.Default.Delete,
-                    contentDescription = "Delete icon",
-                    Modifier.clickable { onClickDelete.invoke() }
-                )
-            }
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Column(
+                    modifier = Modifier.weight(1f),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        modifier = Modifier.width(200.dp),
+                        text = meal.strMeal ?: "",
+                        maxLines = 2,
+                        overflow = TextOverflow.Ellipsis,
+                        textAlign = TextAlign.Center
+                    )
+                }
 
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    Icon(
+                        imageVector = Icons.Default.Delete,
+                        contentDescription = "Delete icon",
+                        Modifier.clickable { onClickDelete.invoke() }
+                    )
+                }
+            }
         }
     }
 }

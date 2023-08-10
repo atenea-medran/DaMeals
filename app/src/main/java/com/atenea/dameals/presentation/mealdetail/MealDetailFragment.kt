@@ -1,15 +1,19 @@
 package com.atenea.dameals.presentation.mealdetail
 
+import android.content.res.Resources.Theme
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
+import androidx.compose.material.MaterialTheme
+import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import coil.load
 import com.atenea.dameals.R
+import com.atenea.dameals.components.HeartComposeComponent
 import com.atenea.dameals.databinding.FragmentMealDetailBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -32,10 +36,23 @@ class MealDetailFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.actionBar?.setDisplayHomeAsUpEnabled(true)
+
         mealDetailViewModel.meal.observe(viewLifecycleOwner) { meal ->
             with(binding) {
                 tvMealName.text = meal?.strMeal
                 ivMealImage.load(meal?.strMealThumb)
+                ivFavorite.apply {
+                    setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
+                    setContent {
+                        MaterialTheme {
+                            if (meal != null) {
+                                HeartComposeComponent(favorite = meal.favorite)
+                            }
+                        }
+                    }
+
+                }
                 with(meal) {
                     tvIngredients.text = getString(
                         R.string.ingredients,
@@ -86,11 +103,6 @@ class MealDetailFragment : Fragment() {
                     ).trim()
                     tvInstructions.text = meal?.strInstructions
                 }
-
-//                wvYoutube.webChromeClient = WebChromeClient()
-//                wvYoutube.
-//                wvYoutube.setOnClickListener {
-//                wvYoutube.loadUrl(meal.strYoutube!!)
             }
         }
         mealDetailViewModel.getData(args.mealId)

@@ -13,6 +13,10 @@ class LocalDataSourceImpl(
     override suspend fun getMealList(): List<MealLocal> =
         mealDao.getAll()
 
+    override suspend fun getMealDetail(idMeal: String): MealLocal =
+        mealDao.getMealDetail(idMeal)
+
+
     override suspend fun getFavoriteMealList(): Flow<List<MealLocal>> =
         flow { emit(mealDao.getAll()) }
 

@@ -16,6 +16,9 @@ interface MealDao {
     @Query("SELECT * FROM MealTable ORDER BY strMeal")
     suspend fun getAll(): List<MealLocal>
 
+    @Query("SELECT * FROM MealTable WHERE idMeal=:idMeal")
+    suspend fun getMealDetail(idMeal: String): MealLocal
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertMeal(meal: MealLocal)
 

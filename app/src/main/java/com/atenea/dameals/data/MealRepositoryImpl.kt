@@ -29,8 +29,8 @@ class MealRepositoryImpl(
         }
     }
 
-    override suspend fun getMealDetail(mealId: String): MealModel? =
-        remoteDataSource.getMealDetail(mealId)?.toMealModel()
+    override suspend fun getMealDetail(mealId: String): MealModel =
+        localDataSource.getMealDetail(mealId).toMealModel()
 
     override suspend fun makeMealFavorite(meal: MealModel) {
         localDataSource.makeMealFavorite(meal.toMealLocal())
