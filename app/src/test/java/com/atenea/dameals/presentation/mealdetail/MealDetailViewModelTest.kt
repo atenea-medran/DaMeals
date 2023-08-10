@@ -3,6 +3,8 @@ package com.atenea.dameals.presentation.mealdetail
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.atenea.dameals.mealModelDataBuilder
 import com.atenea.dameals.domain.usecase.GetMealDetailUseCase
+import com.atenea.dameals.domain.usecase.MakeMealFavoriteUseCase
+import com.atenea.dameals.domain.usecase.RemoveMealFromFavoriteUseCase
 import com.atenea.dameals.testutil.DefaultDispatcherRule
 import com.atenea.dameals.testutil.getOrAwaitValue
 import io.mockk.MockKAnnotations
@@ -25,6 +27,10 @@ class MealDetailViewModelTest {
 
     @MockK(relaxed = true)
     private lateinit var getMealDetailUseCase: GetMealDetailUseCase
+    @MockK(relaxed = true)
+    private lateinit var makeMealFavoriteUseCase: MakeMealFavoriteUseCase
+    @MockK(relaxed = true)
+    private lateinit var removeMealFromFavoriteUseCase: RemoveMealFromFavoriteUseCase
 
     @Before
     fun setup() {
@@ -36,8 +42,11 @@ class MealDetailViewModelTest {
         coEvery { getMealDetailUseCase.invoke("52772") } returns
                 mealModelDataBuilder()
 
-        val viewModel = MealDetailViewModel(getMealDetailUseCase)
-
+        val viewModel = MealDetailViewModel(
+            getMealDetailUseCase,
+            makeMealFavoriteUseCase,
+            removeMealFromFavoriteUseCase
+        )
         viewModel.getMeal("52772")
 
         val result = viewModel.meal.getOrAwaitValue()
@@ -50,7 +59,11 @@ class MealDetailViewModelTest {
         coEvery { getMealDetailUseCase.invoke("5277221312") } returns
                 mealModelDataBuilder()
 
-        val viewModel = MealDetailViewModel(getMealDetailUseCase)
+        val viewModel = MealDetailViewModel(
+            getMealDetailUseCase,
+            makeMealFavoriteUseCase,
+            removeMealFromFavoriteUseCase
+        )
 
         viewModel.getMeal("52772")
 

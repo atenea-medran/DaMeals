@@ -1,6 +1,5 @@
 package com.atenea.dameals.presentation.mealdetail
 
-import android.content.res.Resources.Theme
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,6 +14,7 @@ import coil.load
 import com.atenea.dameals.R
 import com.atenea.dameals.components.HeartComposeComponent
 import com.atenea.dameals.databinding.FragmentMealDetailBinding
+import com.atenea.dameals.presentation.favoritemeallist.ui.theme.DaMealsTheme
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -45,13 +45,16 @@ class MealDetailFragment : Fragment() {
                 ivFavorite.apply {
                     setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
                     setContent {
-                        MaterialTheme {
+                        DaMealsTheme {
                             if (meal != null) {
-                                HeartComposeComponent(favorite = meal.favorite)
+                                HeartComposeComponent(favorite = meal.favorite) {
+                                    if (!meal.favorite) mealDetailViewModel.makeMealFavorite(meal)
+                                    else mealDetailViewModel.removeMealFromFavoriteList(meal)
+                                    mealDetailViewModel.getData(args.mealId)
+                                }
                             }
                         }
                     }
-
                 }
                 with(meal) {
                     tvIngredients.text = getString(

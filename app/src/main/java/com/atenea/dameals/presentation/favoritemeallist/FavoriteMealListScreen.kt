@@ -2,6 +2,8 @@ package com.atenea.dameals.presentation.favoritemeallist
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -23,11 +25,13 @@ fun FavoriteMealList(
     when (mealState.value) {
         is FavoriteMealListState.FavoriteMealList -> {
             LazyColumn(
-                modifier = Modifier.padding(
-                    vertical = 20.dp
-                ).semantics {
-                  contentDescription = "de favoritos"
-                },
+                modifier = Modifier
+                    .padding(
+                        vertical = 20.dp
+                    )
+                    .semantics {
+                        contentDescription = "de favoritos"
+                    },
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 val favoriteMealList =
@@ -36,7 +40,6 @@ fun FavoriteMealList(
                     val meal = favoriteMealList[i]
                     ShowFavoriteMealCard(meal, onCardClick = {
                         onCardClick(meal.idMeal)
-
                     },
                         onClickDelete = {
                             favoriteMealListViewModel.removeMealFromFavoriteList(meal)

@@ -34,7 +34,8 @@
             android:text="@string/meal_name"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/iv_star" />
+            app:layout_constraintEnd_toStartOf="@id/iv_star"
+            style="@style/Regular"/>
 
         <ImageView
             android:id="@+id/iv_star"

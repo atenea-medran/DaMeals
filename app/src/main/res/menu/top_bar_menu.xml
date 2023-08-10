@@ -5,11 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".activity.MainActivity">
 
-    <!-- "Mark Favorite", should appear as action button if possible -->
     <item
         android:id="@+id/action_search"
         android:icon="@drawable/search"
-        android:title="Search"
-        app:showAsAction="always" />
+        android:title="@string/search"
+        app:showAsAction="always"/>
 
 </menu>

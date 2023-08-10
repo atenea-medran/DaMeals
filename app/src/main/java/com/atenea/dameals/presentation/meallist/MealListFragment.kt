@@ -28,7 +28,6 @@ class MealListFragment : Fragment() {
         binding = this
     }.root
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.btReload.setOnClickListener {
@@ -37,9 +36,7 @@ class MealListFragment : Fragment() {
         }
 
         mealListViewModel.mealList.observe(viewLifecycleOwner) { mealList ->
-            Log.d("meallist", mealList.toString())
             if (mealList != null) {
-                Log.d("meallistobserve", "observe")
                 initList(mealList)
             }
         }
@@ -85,6 +82,4 @@ class MealListFragment : Fragment() {
             }
         )
     }
-
-
 }

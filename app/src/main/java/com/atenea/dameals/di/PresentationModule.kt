@@ -11,7 +11,7 @@ val presentationModule = module {
     viewModel { MealListViewModel(get(), get(), get()) }
     viewModelOf(::MealListViewModel)
 
-    viewModel { MealDetailViewModel(get()) }
+    viewModel { MealDetailViewModel(get(), get(), get()) }
     viewModelOf(::MealDetailViewModel)
 
     viewModel { FavoriteMealListViewModel(get(), get()) }

@@ -9,6 +9,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.navigation.findNavController
 import com.atenea.dameals.databinding.FragmentFavoriteMealListBinding
+import com.atenea.dameals.presentation.favoritemeallist.ui.theme.DaMealsTheme
 
 class FavoriteMealListFragment : Fragment() {
 
@@ -25,7 +26,7 @@ class FavoriteMealListFragment : Fragment() {
         binding.composeView.apply {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
-                MaterialTheme {
+                DaMealsTheme {
                     FavoriteMealList {
                         findNavController().navigate(
                         FavoriteMealListFragmentDirections.actionFavoriteMealListFragmentToMealDetailFragment(it))

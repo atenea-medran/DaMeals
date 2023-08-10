@@ -1,24 +1,21 @@
 package com.atenea.dameals.presentation.favoritemeallist
 
-import androidx.compose.foundation.background
+import com.atenea.dameals.presentation.favoritemeallist.ui.theme.Typography
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.focusable
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -30,18 +27,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.semantics.clearAndSetSemantics
-import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.viewinterop.AndroidView
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.atenea.dameals.components.CheckAVSComponent
 import com.atenea.dameals.domain.model.MealModel
 import com.atenea.dameals.presentation.favoritemeallist.ui.theme.globalElevation
 import com.atenea.dameals.presentation.favoritemeallist.ui.theme.globalPadding
@@ -97,6 +88,7 @@ fun ShowFavoriteMealCard(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
+                        style = Typography.bodyMedium,
                         modifier = Modifier.width(200.dp),
                         text = meal.strMeal ?: "",
                         maxLines = 2,

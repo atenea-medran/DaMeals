@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Regular">
+        <item name="android:fontFamily">@font/outfit</item>
+        <item name="fontFamily">@font/outfit_medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">16.sp</item>
+    </style>
+    <style name="Title">
+        <item name="android:fontFamily">@font/outfit</item>
+        <item name="fontFamily">@font/outfit_medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">30.sp</item>
+    </style>
+
+
+</resources>

@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.compose.material.MaterialTheme
 import com.atenea.dameals.databinding.FragmentLoginBinding
 import androidx.compose.ui.platform.ViewCompositionStrategy
+import com.atenea.dameals.presentation.favoritemeallist.ui.theme.DaMealsTheme
 
 class LoginFragment : Fragment() {
 
@@ -25,7 +26,7 @@ class LoginFragment : Fragment() {
         binding.composeView.apply {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
-                MaterialTheme {
+                DaMealsTheme {
                     LoginScreen(
                         onLoginSuccess = { Toast.makeText(context, "Login exitoso",Toast.LENGTH_SHORT).show() },
                         onLoginFail = { Toast.makeText(context, "LOGIN FALLIDO",Toast.LENGTH_SHORT).show() }
