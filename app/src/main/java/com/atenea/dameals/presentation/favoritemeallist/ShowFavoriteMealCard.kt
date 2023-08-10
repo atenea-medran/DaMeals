@@ -41,7 +41,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.atenea.dameals.components.CheckComponent
+import com.atenea.dameals.components.CheckAVSComponent
 import com.atenea.dameals.domain.model.MealModel
 import com.atenea.dameals.presentation.favoritemeallist.ui.theme.globalElevation
 import com.atenea.dameals.presentation.favoritemeallist.ui.theme.globalPadding
@@ -133,7 +133,7 @@ fun ShowFavoriteMealCard(
                             done = newState
                         },
                     factory = { context ->
-                        CheckComponent(context).apply {
+                        CheckAVSComponent(context).apply {
                             this.checked = done
                         }
                     },

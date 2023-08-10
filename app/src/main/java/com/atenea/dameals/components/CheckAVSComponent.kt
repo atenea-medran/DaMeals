@@ -6,7 +6,7 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import com.atenea.dameals.R
 
-class CheckComponent @JvmOverloads constructor(
+class CheckAVSComponent @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
