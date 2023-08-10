@@ -10,9 +10,8 @@ import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
-import org.hamcrest.MatcherAssert
-import org.junit.Assert.*
 import org.hamcrest.CoreMatchers.`is`
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -43,7 +42,7 @@ class MealDetailViewModelTest {
 
         val result = viewModel.meal.getOrAwaitValue()
 
-        MatcherAssert.assertThat(result?.idMeal, `is`("52772"))
+        assertThat(result?.idMeal, `is`("52772"))
     }
 
     @Test
@@ -57,6 +56,6 @@ class MealDetailViewModelTest {
 
         val result = viewModel.meal.getOrAwaitValue()
 
-        MatcherAssert.assertThat(result?.idMeal, `is`(""))
+        assertThat(result?.idMeal, `is`(""))
     }
 }

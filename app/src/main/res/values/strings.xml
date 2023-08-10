@@ -5,7 +5,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="ingredients">%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s
     </string>
-    <string name="measure">%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s
+    <string name="measures">%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s
     </string>
     <string name="title_activity_favorite_list_screen">FavoriteMealListScreen</string>
     <string name="home">Home</string>

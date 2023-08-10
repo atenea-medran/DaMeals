@@ -62,7 +62,7 @@ class MealDetailFragment : Fragment() {
                     ).trim()
 
                     tvQuantity.text = getString(
-                        R.string.measure,
+                        R.string.measures,
                         this?.strMeasure1 ?: "",
                         this?.strMeasure2 ?: "",
                         this?.strMeasure3 ?: "",
