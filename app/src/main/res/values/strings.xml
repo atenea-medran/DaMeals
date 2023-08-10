@@ -17,4 +17,5 @@
     <string name="recargar">Recargar</string>
     <string name="login">Login</string>
     <string name="user">User</string>
+    <string name="description">description</string>
 </resources>

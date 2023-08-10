@@ -41,6 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:text="@string/ingredients"
             app:layout_constraintEnd_toStartOf="@id/tv_quantity"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_meal_name" />
@@ -50,12 +51,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:text="@string/measures"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/tv_ingredients"
             app:layout_constraintTop_toBottomOf="@id/tv_meal_name" />
 
         <TextView
             android:id="@+id/tv_instructions"
+            android:text="@string/description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
