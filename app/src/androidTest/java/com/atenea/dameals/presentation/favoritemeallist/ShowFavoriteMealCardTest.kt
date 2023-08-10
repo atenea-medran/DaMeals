@@ -7,7 +7,6 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.printToLog
 import com.atenea.dameals.mealModelDataBuilder
-import com.atenea.dameals.presentation.favoritemeallist.ShowFavoriteMealCard
 import org.junit.Rule
 import org.junit.Test
 
@@ -16,11 +15,13 @@ class ShowFavoriteMealCardTest {
     val rule = createComposeRule()
 
     @Test
-    fun testShowHero() {
+    fun testShowMeal() {
         rule.setContent {
             ShowFavoriteMealCard(
-                meal = mealModelDataBuilder()
-            ) {}
+                meal = mealModelDataBuilder(),
+                onCardClick = {},
+                onClickDelete = {}
+            )
         }
 
         rule.onRoot().printToLog("MY TAG")

@@ -43,7 +43,7 @@ class MealDetailViewModelTest {
 
         val result = viewModel.meal.getOrAwaitValue()
 
-        MatcherAssert.assertThat(result.idMeal, `is`("52772"))
+        MatcherAssert.assertThat(result?.idMeal, `is`("52772"))
     }
 
     @Test
@@ -57,6 +57,6 @@ class MealDetailViewModelTest {
 
         val result = viewModel.meal.getOrAwaitValue()
 
-        MatcherAssert.assertThat(result.idMeal, `is`(""))
+        MatcherAssert.assertThat(result?.idMeal, `is`(""))
     }
 }

@@ -46,7 +46,6 @@ class MealListFragment : Fragment() {
         mealListViewModel.errorMessage.observe(viewLifecycleOwner) { message ->
             message?.let {
                 showErrorMessageAndReloadButton(it)
-//                binding.rvMealList.visibility = View.GONE
             } ?: run {
                 hideErrorMessageAndReloadButton()
             }

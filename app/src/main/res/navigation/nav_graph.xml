@@ -32,4 +32,8 @@
         <action android:id="@+id/action_FavoriteMealListFragment_to_MealDetailFragment"
             app:destination="@id/mealDetailFragment"/>
     </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.atenea.dameals.presentation.login.LoginFragment"
+        android:label="LoginFragment" />
 </navigation>

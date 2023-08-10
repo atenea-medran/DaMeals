@@ -10,4 +10,9 @@
         android:enabled="true"
         android:icon="@drawable/filled_star"
         android:title="@string/favorites"/>
+    <item
+        android:id="@+id/loginFragment"
+        android:enabled="true"
+        android:icon="@drawable/account"
+        android:title="@string/user"/>
 </menu>
