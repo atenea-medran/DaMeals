@@ -13,7 +13,6 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.runTest
 import org.hamcrest.CoreMatchers.`is`
-import org.hamcrest.CoreMatchers.nullValue
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Before
 import org.junit.Rule

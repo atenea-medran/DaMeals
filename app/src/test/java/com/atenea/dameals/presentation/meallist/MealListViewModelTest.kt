@@ -5,6 +5,7 @@ import com.atenea.dameals.buildMealList
 import com.atenea.dameals.domain.usecase.GetMealListUseCase
 import com.atenea.dameals.domain.usecase.MakeMealFavoriteUseCase
 import com.atenea.dameals.domain.usecase.RemoveMealFromFavoriteUseCase
+import com.atenea.dameals.domain.usecase.RemoveMealFromFavoriteUseCaseTest
 import com.atenea.dameals.testutil.DefaultDispatcherRule
 import com.atenea.dameals.testutil.getOrAwaitValue
 import io.mockk.MockKAnnotations
