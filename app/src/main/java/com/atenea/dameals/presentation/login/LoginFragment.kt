@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.compose.material.MaterialTheme
 import com.atenea.dameals.databinding.FragmentLoginBinding
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import com.atenea.dameals.presentation.favoritemeallist.ui.theme.DaMealsTheme

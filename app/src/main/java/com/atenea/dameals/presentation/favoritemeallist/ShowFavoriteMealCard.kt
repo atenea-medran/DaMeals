@@ -1,6 +1,5 @@
 package com.atenea.dameals.presentation.favoritemeallist
 
-import com.atenea.dameals.presentation.favoritemeallist.ui.theme.Typography
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Column
@@ -12,16 +11,11 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -34,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.atenea.dameals.domain.model.MealModel
+import com.atenea.dameals.presentation.favoritemeallist.ui.theme.Typography
 import com.atenea.dameals.presentation.favoritemeallist.ui.theme.globalElevation
 import com.atenea.dameals.presentation.favoritemeallist.ui.theme.globalPadding
 import com.atenea.dameals.presentation.favoritemeallist.ui.theme.globalRoundedCornerShape
@@ -44,12 +39,8 @@ fun ShowFavoriteMealCard(
     onCardClick: () -> Unit,
     onClickDelete: () -> Unit
 ) {
-    var done by remember {
-        mutableStateOf(false)
-    }
 
     val requester = FocusRequester()
-
 
     Card(
         modifier = Modifier

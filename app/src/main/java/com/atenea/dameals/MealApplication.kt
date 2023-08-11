@@ -1,7 +1,6 @@
 package com.atenea.dameals
 
 import android.app.Application
-import androidx.compose.ui.text.font.Font
 import com.atenea.dameals.di.dataModule
 import com.atenea.dameals.di.domainModule
 import com.atenea.dameals.di.presentationModule
