@@ -15,7 +15,6 @@ import org.junit.Before
 import org.junit.BeforeClass
 import org.junit.Rule
 import org.junit.Test
-import retrofit2.HttpException
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
@@ -65,8 +64,6 @@ class MealApiTest {
         @JvmStatic
         fun setupCommon() {
             retrofit = Retrofit.Builder()
-                // lo ideal es probar contra un entorno estable
-                // entorno de QA
                 .baseUrl("https://www.themealdb.com/")
                 .client(
                     OkHttpClient.Builder()
