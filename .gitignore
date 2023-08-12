@@ -46,4 +46,4 @@ google-services.json
 *.hprof
 
 # Imagenes ppt
-/imagenes_ppt
+imagenes_ppt/
