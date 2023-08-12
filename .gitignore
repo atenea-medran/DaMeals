@@ -1,4 +1,3 @@
-.gradle
 /local.properties
 /.idea/caches
 /.idea/libraries
@@ -45,3 +44,6 @@ google-services.json
 
 # Android Profiling
 *.hprof
+
+# Imagenes ppt
+imagenes_ppt
